@@ -6,7 +6,7 @@ import random
 import requests
 import sys 
 
-os.system('cls')
+os.system('cls' if os.name == 'nt' else 'clear')
 print("")
 print('''
  _____ _____ _____ _____     _     _ _   

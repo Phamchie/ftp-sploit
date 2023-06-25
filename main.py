@@ -61,7 +61,7 @@ if response.status_code == 200:
         # list random username, password
 
         username = ["root", "admin", "admin123"]
-        password = ["123456" "root123", "1234", "admin123"]
+        password = ["123456", "root123", "1234", "admin123"]
         usernamess = random.choice(username)
         passwordss = random.choice(password)
 

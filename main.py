@@ -4,7 +4,7 @@ import time
 import os
 import random
 
-os.system('cls')
+os.system('clear')
 print("")
 print('''
  _____ _____ _____ _____     _     _ _   

@@ -37,9 +37,9 @@ if response.status_code == 200:
     get_ip = socket.gethostbyname(url)
 
     print("")
-    print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" set host : " + Fore.GREEN + Style.BRIGHT + f"{url}"))
+    print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" set host : {url}"))
     time.sleep(2)
-    print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" host address : " + Fore.GREEN + Style.BRIGHT + f"{get_ip}" + Style.RESET_ALL + "..."))
+    print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" host address : {get_ip} ..."))
     time.sleep(0.40)
     print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" starting checking port...."))
     time.sleep(3)
@@ -51,7 +51,7 @@ if response.status_code == 200:
     code = s.connect_ex((url, port))
 
     if code == 0:
-        print(Fore.RED + "[+]" + Style.BRIGHT + Style.RESET_ALL + (f" {get_ip} Is Opening Port " + Fore.GREEN + Style.BRIGHT + f"{port}"))
+        print(Fore.RED + "[+]" + Style.BRIGHT + Style.RESET_ALL + (f" {get_ip} Is Opening Port {port}"))
         time.sleep(3)
         print(Fore.GREEN + "[-]" + Style.BRIGHT +Style.RESET_ALL + (f" Setting Up botton"))
         time.sleep(5)
@@ -89,11 +89,11 @@ if response.status_code == 200:
                 
                     print(Fore.GREEN + Style.BRIGHT + "[-]" + Style.RESET_ALL + (f" FTP Login Sweep Incorect"))
                     time.sleep(0.10)
-                    print(Fore.YELLOW + Style.BRIGHT + "[*]" + Style.RESET_ALL + (f" Set Playload " + Fore.RED + Style.BRIGHT + f"( FTP CRACKED ) "))
+                    print(Fore.YELLOW + Style.BRIGHT + "[*]" + Style.RESET_ALL + (f" Set Playload ( FTP CRACKED ) "))
                     time.sleep(0.30)
                     print(Fore.GREEN + Style.BRIGHT + "[-]" + Style.RESET_ALL + (f" Random Username, Password list"))
                     time.sleep(1)
-                    print(Fore.GREEN + Style.BRIGHT + "[+]" + Style.RESET_ALL + (f" Starting Cracking USR, PWD For " + Fore.GREEN + Style.BRIGHT + f"{get_ip} "))
+                    print(Fore.GREEN + Style.BRIGHT + "[+]" + Style.RESET_ALL + (f" Starting Cracking USR, PWD For {get_ip} "))
                     time.sleep(0.30)
 
 
@@ -103,7 +103,7 @@ if response.status_code == 200:
                         print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (" PORT : " + Fore.GREEN + Style.BRIGHT + f"{port}" + Style.RESET_ALL))
                         print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Username : " + Fore.GREEN + Style.BRIGHT + f"{usernames}" + Style.RESET_ALL))
                         print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Password : " + Fore.GREEN + Style.BRIGHT + f"{passwords}" + Style.RESET_ALL))
-                        print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Login Success"))
+                        print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Login " + Fore.GREEN + Style.BRIGHT + f"Success"))
 
 
                     except ftplib.error_perm:
@@ -111,7 +111,7 @@ if response.status_code == 200:
                         print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (" PORT : " + Fore.GREEN + Style.BRIGHT + f"{port}" + Style.RESET_ALL))
                         print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Username : " + Fore.GREEN + Style.BRIGHT + f"{usernames}" + Style.RESET_ALL))
                         print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Password : " + Fore.GREEN + Style.BRIGHT + f"{passwords}" + Style.RESET_ALL))
-                        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Login FAILED "))
+                        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Login " + Fore.RED + Style.BRIGHT + f"FAILED "))
                         time.sleep(0.30)
 
     elif code == s.timeout:

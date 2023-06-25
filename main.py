@@ -93,3 +93,4 @@ if response.status_code == 200:
 
 else:
     print(f"[!] {url} responsed time out")
+    os.system('py main.py' if os.name == 'nt' else 'python main.py')
